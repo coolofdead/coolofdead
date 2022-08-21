@@ -8,16 +8,35 @@
 
     const url = "https://api.spoonacular.com/mealplanner/generate?apiKey=abe80cba312b4d70889d88cf1b7337df&timeFrame=day";
 
-    fetch(url)
-    .then(response => response.text())
-    .then((data) => {
-        let recipesOfTheWeek = JSON.parse(data);
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+    
+    function createCookie(name, value) {
+        let date = new Date();
+        let tomorrow = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 23, 59, 59);
+        let expires = "; expires=" + tomorrow.toGMTString();
+        document.cookie = name + "=" + value + expires;
+    }
 
-        const d = new Date();
-        let hour = d.getHours();
+    fetch(url)
+    .then(async function(response) {
+        let hour = (new Date()).getHours();
         let mealTime = hour < 15 ? MIDI_RECIPE_INDEX : SOIR_RECIPE_INDEX;
 
-        location = recipesOfTheWeek['meals'][mealTime]['sourceUrl'];
+        if (getCookie(MIDI_RECIPE_INDEX) === undefined || getCookie(SOIR_RECIPE_INDEX) === undefined)
+        {
+            let data = await response.text()
+            let recipesOfTheWeek = JSON.parse(data);
+
+            createCookie(MIDI_RECIPE_INDEX, recipesOfTheWeek['meals'][MIDI_RECIPE_INDEX]['sourceUrl']);
+            createCookie(SOIR_RECIPE_INDEX, recipesOfTheWeek['meals'][SOIR_RECIPE_INDEX]['sourceUrl']);
+        }
+
+        let recipeUrl = getCookie(mealTime);
+        location = recipeUrl;
     });
 
 </script>
