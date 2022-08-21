@@ -1,0 +1,23 @@
+<head>
+    <link rel="apple-touch-icon" href="recipe.png">
+</head>
+
+<script>
+    const MIDI_RECIPE_INDEX = 1;  
+    const SOIR_RECIPE_INDEX = 2;  
+
+    const url = "https://api.spoonacular.com/mealplanner/generate?apiKey=abe80cba312b4d70889d88cf1b7337df&timeFrame=day";
+
+    fetch(url)
+    .then(response => response.text())
+    .then((data) => {
+        let recipesOfTheWeek = JSON.parse(data);
+
+        const d = new Date();
+        let hour = d.getHours();
+        let mealTime = hour < 15 ? MIDI_RECIPE_INDEX : SOIR_RECIPE_INDEX;
+
+        location = recipesOfTheWeek['meals'][mealTime]['sourceUrl'];
+    });
+
+</script>
