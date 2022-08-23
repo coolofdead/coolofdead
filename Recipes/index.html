@@ -6,7 +6,7 @@
     const MIDI_RECIPE_INDEX = 1;  
     const SOIR_RECIPE_INDEX = 2;  
 
-    const url = "https://api.spoonacular.com/mealplanner/generate?apiKey=abe80cba312b4d70889d88cf1b7337df&timeFrame=day";
+    const url = "https://raw.githubusercontent.com/coolofdead/RecipesDB/master/FILE_NAME.json";
 
     function getCookie(name) {
         const value = `; ${document.cookie}`;
@@ -21,18 +21,17 @@
         document.cookie = name + "=" + value + expires;
     }
 
-    fetch(url)
+    fetch(url.replace('FILE_NAME', Math.floor(Math.random() * 2656)))
     .then(async function(response) {
         let hour = (new Date()).getHours();
         let mealTime = hour < 15 ? MIDI_RECIPE_INDEX : SOIR_RECIPE_INDEX;
 
-        if (getCookie(MIDI_RECIPE_INDEX) === undefined || getCookie(SOIR_RECIPE_INDEX) === undefined)
+        if (getCookie(mealTime) === undefined)
         {
-            let data = await response.text()
-            let recipesOfTheWeek = JSON.parse(data);
+            let data = await response.text();
+            let recipeOfTheDay = JSON.parse(data);
 
-            createCookie(MIDI_RECIPE_INDEX, recipesOfTheWeek['meals'][MIDI_RECIPE_INDEX]['sourceUrl']);
-            createCookie(SOIR_RECIPE_INDEX, recipesOfTheWeek['meals'][SOIR_RECIPE_INDEX]['sourceUrl']);
+            createCookie(mealTime, recipeOfTheDay['imageLink']);
         }
 
         let recipeUrl = getCookie(mealTime);
