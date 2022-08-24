@@ -31,7 +31,8 @@
             let data = await response.text();
             let recipeOfTheDay = JSON.parse(data);
 
-            createCookie(mealTime, recipeOfTheDay['imageLink']);
+            // createCookie(mealTime, recipeOfTheDay['imageLink']); // 504 from cloudfront, it should be up one day
+            createCookie(mealTime, recipeOfTheDay['websiteUrl']);
         }
 
         let recipeUrl = getCookie(mealTime);
