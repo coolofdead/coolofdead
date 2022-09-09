@@ -123,20 +123,14 @@
       };
       document.body.appendChild(script);
       
-      const resizeObserver = new ResizeObserver(entries => {
-        alert("resize");
-        for (let entry of entries) {
-          var canvasUnity = document.querySelector("#unity-container");
-          canvasUnity.style.width = window.innerWidth + 'px';
-          canvasUnity.style.height = window.innerHeight + 'px';
-        }
-      });
-      resizeObserver.observe(document.querySelector('#unity-container'));
-
-      document.setInterval(() => {
+      setInterval(() => {
         var canvasUnity = document.querySelector("#unity-container");
         canvasUnity.style.width = window.innerWidth + 'px';
         canvasUnity.style.height = window.innerHeight + 'px';
+
+        var canvasUnity = document.querySelector("#unity-canvas");
+        canvasUnity.style.width = '100%';
+        canvasUnity.style.height = '100%';
       }, 500);
 
     </script>
