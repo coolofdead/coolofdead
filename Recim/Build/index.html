@@ -133,27 +133,11 @@
       });
       resizeObserver.observe(document.querySelector('#unity-container'));
 
-      document.addEventListener("orientationchange", function(event){
-        alert("rotate");
+      document.setInterval(() => {
         var canvasUnity = document.querySelector("#unity-container");
         canvasUnity.style.width = window.innerWidth + 'px';
         canvasUnity.style.height = window.innerHeight + 'px';
-        setTimeout(() => {
-          var canvasUnity = document.querySelector("#unity-container");
-          canvasUnity.style.width = window.innerWidth + 'px';
-          canvasUnity.style.height = window.innerHeight + 'px'; 
-        }, 500)
-        setTimeout(() => {
-          var canvasUnity = document.querySelector("#unity-container");
-          canvasUnity.style.width = window.innerWidth + 'px';
-          canvasUnity.style.height = window.innerHeight + 'px'; 
-        }, 1000)
-        setTimeout(() => {
-          var canvasUnity = document.querySelector("#unity-container");
-          canvasUnity.style.width = window.innerWidth + 'px';
-          canvasUnity.style.height = window.innerHeight + 'px'; 
-        }, 2000)
-      });
+      }, 500);
 
     </script>
   </body>
