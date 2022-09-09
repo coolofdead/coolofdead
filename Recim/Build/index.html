@@ -123,22 +123,33 @@
       };
       document.body.appendChild(script);
       
+      const resizeObserver = new ResizeObserver(entries => {
+        alert("resize");
+        for (let entry of entries) {
+          var canvasUnity = document.querySelector("#unity-container");
+          canvasUnity.style.width = window.innerWidth + 'px';
+          canvasUnity.style.height = window.innerHeight + 'px';
+        }
+      });
+      resizeObserver.observe(document.querySelector('#unity-container'));
+
       document.addEventListener("orientationchange", function(event){
-        var canvasUnity = document.querySelector("#unity-canvas");
+        alert("rotate");
+        var canvasUnity = document.querySelector("#unity-container");
         canvasUnity.style.width = window.innerWidth + 'px';
         canvasUnity.style.height = window.innerHeight + 'px';
         setTimeout(() => {
-          var canvasUnity = document.querySelector("#unity-canvas");
+          var canvasUnity = document.querySelector("#unity-container");
           canvasUnity.style.width = window.innerWidth + 'px';
           canvasUnity.style.height = window.innerHeight + 'px'; 
         }, 500)
         setTimeout(() => {
-          var canvasUnity = document.querySelector("#unity-canvas");
+          var canvasUnity = document.querySelector("#unity-container");
           canvasUnity.style.width = window.innerWidth + 'px';
           canvasUnity.style.height = window.innerHeight + 'px'; 
         }, 1000)
         setTimeout(() => {
-          var canvasUnity = document.querySelector("#unity-canvas");
+          var canvasUnity = document.querySelector("#unity-container");
           canvasUnity.style.width = window.innerWidth + 'px';
           canvasUnity.style.height = window.innerHeight + 'px'; 
         }, 2000)

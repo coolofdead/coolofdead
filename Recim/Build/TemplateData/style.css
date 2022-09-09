@@ -1,8 +1,8 @@
-body { padding: 0; margin: 0; background-color: #000000; width: 100vw; height: 100vh;}
-#unity-container { position: absolute }
+body { padding: 0; margin: 0; background-color: #000000; scroll-behavior:unset; }
+#unity-container { position: absolute; width: 100vw; height: 100vh; overflow: hidden; }
 #unity-container.unity-desktop { left: 50%; top: 50%; transform: translate(-50%, -50%); -webkit-transform: translate(-50%, -50%)}
 #unity-container.unity-mobile { width: 100%; height: 100% }
-#unity-canvas { background: url('Background_Unity.jpg') center; background-size: contain; image-rendering: pixelated; }
+#unity-canvas { background: url('Background_Unity.jpg') center; background-size: contain; image-rendering: pixelated; width: 100%; height: 100%; touch-action: none; }
 .unity-mobile #unity-canvas { width: 100%; height: 100% }
 #unity-loading-bar { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); -webkit-transform: translate(-50%, -50%); display: none }
 #unity-logo { width: 154px; height: 130px; background: url('unity-logo-white.svg') no-repeat center; }
