@@ -123,6 +123,27 @@
       };
       document.body.appendChild(script);
       
+      document.addEventListener("orientationchange", function(event){
+        var canvasUnity = document.querySelector("#unity-canvas");
+        canvasUnity.style.width = window.innerWidth + 'px';
+        canvasUnity.style.height = window.innerHeight + 'px';
+        setTimeout(() => {
+          var canvasUnity = document.querySelector("#unity-canvas");
+          canvasUnity.style.width = window.innerWidth + 'px';
+          canvasUnity.style.height = window.innerHeight + 'px'; 
+        }, 500)
+        setTimeout(() => {
+          var canvasUnity = document.querySelector("#unity-canvas");
+          canvasUnity.style.width = window.innerWidth + 'px';
+          canvasUnity.style.height = window.innerHeight + 'px'; 
+        }, 1000)
+        setTimeout(() => {
+          var canvasUnity = document.querySelector("#unity-canvas");
+          canvasUnity.style.width = window.innerWidth + 'px';
+          canvasUnity.style.height = window.innerHeight + 'px'; 
+        }, 2000)
+      });
+
     </script>
   </body>
 </html>
